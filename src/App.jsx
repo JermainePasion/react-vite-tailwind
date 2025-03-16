@@ -1,5 +1,7 @@
 
 import Form from "./assets/Form";
+import User from "./Users";
+
 
 const Card =({title, quantity, discount}) =>{
   return(
@@ -8,6 +10,60 @@ const Card =({title, quantity, discount}) =>{
      </div>
     ); 
 };
+
+const users = [
+  {id: 1, name:"John Doe", email:"johndoe@gmail.com"},
+  {id: 2, name:"Lebron James", email:"lebronjames@gmail.com"},
+  {id: 3, name:"Imo Ignacio", email:"imo@gmail.com"},
+];
+
+const userComponents = [];
+
+// for (const user of users){
+//   userComponents.push(<User key = {user.id} name ={user.name} email = {user.email} user_id = {user.id}
+//    />)
+// }
+
+const isLoggedIn = true;
+const hasnotif = true;
+const role = 'admin';
+
+function WelcomeMessage(){
+    if(isLoggedIn){
+      return <h2>Welcom back, user!</h2>
+    } else{
+      return <h2>die</h2>
+    }
+}
+// ternary operator
+function GreetingMessage(){
+  return <div>
+    {hasnotif && <p>you have a new notification</p>}
+  </div>
+}
+
+//logical && operator
+
+function notification(){
+  <div>
+    <h2>{isLoggedIn ? "HI GOODMORNING" : "GOODBYE GOODNIGHT"}</h2>
+  </div>
+}
+
+//switch case (if many cases)
+
+function UserRole(){
+
+  switch(role){
+    case 'admin':
+      return <h2>hello, admin!</h2>
+    break;
+    case 'user':
+      return <h2>hello, user!</h2>
+    default:
+      return <h2>hello, guest!</h2>
+  }
+}
 
 const App =() =>{
 
@@ -45,10 +101,38 @@ const App =() =>{
 
   <div className="container"> 
         <h1>Learn React: Handling Events</h1>
-        <button oncClick={handleClick}>SOMETHING</button>
+  </div>
+  <div style={{justifyContent: "center",  display:"flex"}}>
+    <button oncClick={handleClick}>SOMETHING</button>
+    <Form onSubmit={handleSubmit}/>
+  </div>
 
-        <Form onSubmit={handleSubmit}/>
+
+  <div className="container"> 
+        <h1>Rendering a List of Components</h1>  
       </div>
+  <div>
+    {users
+    //.filter((user)=> user.id ===1)
+    .map((user)=>(
+      <User 
+      key = {user.id} 
+      name ={user.name} 
+      email = {user.email} 
+      user_id = {user.id}
+      />
+    ))}
+  </div>
+
+
+
+  <div style={{justifyContent: "center",  display:"flex"}}>
+    <h1><WelcomeMessage/></h1> {/*if statements*/}
+    <GreetingMessage/>
+    <UserRole/>
+     
+  </div>
+      
 
   </>
   
