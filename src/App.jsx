@@ -28,6 +28,8 @@ const isLoggedIn = true;
 const hasnotif = true;
 const role = 'admin';
 
+// if statement
+
 function WelcomeMessage(){
     if(isLoggedIn){
       return <h2>Welcom back, user!</h2>
@@ -59,7 +61,7 @@ function UserRole(){
       return <h2>hello, admin!</h2>
     break;
     case 'user':
-      return <h2>hello, user!</h2>
+      return <h2>hello, user!!!</h2>
     default:
       return <h2>hello, guest!</h2>
   }
