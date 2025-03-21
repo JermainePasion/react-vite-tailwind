@@ -1,12 +1,47 @@
 
+import { useEffect, useState } from "react";
 import Form from "./assets/Form";
 import User from "./Users";
 
 
 const Card =({title, quantity, discount}) =>{
+
+  // react hook (useState)
+  const [hasAdded, setHasAdded] = useState(false);
+  const [count, setCount] = useState(0);
+
+// react hook (useEffect)
+useEffect(() => {
+  console.log(`${title} has been added`)
+}, [hasAdded]);
+
+useEffect(()=>{
+  console.log("Card rendered");
+},[]);
+
   return(
-    <div>
-     <h2>{title} {quantity}</h2>
+    
+    <div onClick={()=>{
+      setCount(count +1)
+    }} 
+    
+    className="cardbitch" style={{
+      border: "5px solid black", 
+      borderRadius: "10px", 
+      backgroundColor: "#46BBE6",
+      margin: "20px auto",
+      padding: "20px",
+      justifyContent: "center",
+      display:"flex",
+      flexDirection:"column",
+      alignItems: "center"
+    }}>
+     <h2>{title}<br/> {count}</h2>
+     <button onClick={()=>{setHasAdded (!hasAdded)}}
+      >
+        {hasAdded ? "delete from cart": "add to cart"}
+      
+     </button>
      </div>
     ); 
 };
@@ -69,6 +104,8 @@ function UserRole(){
 
 const App =() =>{
 
+
+//***** conditional rendering *****
   function handleSubmit(e){
     e.preventDefault();
     console.log("form submitted");
@@ -81,6 +118,8 @@ const App =() =>{
   function handleTextChange(e){
     console.log(e.target.value);
   }
+
+//***** conditional rendering *****
   return ( 
     <>
     <div className="cardbitch" style={{
